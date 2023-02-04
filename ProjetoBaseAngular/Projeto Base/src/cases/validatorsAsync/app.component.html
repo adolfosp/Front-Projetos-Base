@@ -1,0 +1,3 @@
+<input type="text" [formControl]="myControl" />
+<p>Validation state: {{ myControl.statusChanges | async }}</p>
+<p>Validation error: {{ myControl.errors?.error }}</p>

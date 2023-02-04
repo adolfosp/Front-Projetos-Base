@@ -1,0 +1,13 @@
+<input
+  type="number"
+  [value]="texto1"
+  (input)="onChangeText1($event.target)"
+  placeholder="texto1" />
+
+<input
+  type="number"
+  [value]="texto2"
+  (input)="onChangeText2($event.target)"
+  placeholder="texto2" />
+
+<p>{{ texto2 }}</p>

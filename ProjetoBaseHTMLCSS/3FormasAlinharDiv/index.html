@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br"  >
+    <head>
+        <title>7 formas de alinhar uma div</title>
+        <style>
+
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            div{
+                width: auto;
+                height: 100px;
+            }
+
+            #primeiraDiv{
+                display: flex;
+                justify-content: center;
+                background-color: #f00;
+
+
+            }
+              
+            #terceiraDiv{
+                text-align: center;
+            }
+
+            #quintaDiv{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="primeiraDiv">
+            <div>JUSTIFY-CONTEXT: CENTER</div>
+        </div>
+        <div id="terceiraDiv">TEXT-ALIGN: CENTER</div>
+        <div id="quintaDiv">LOUCURA</div>
+    </body>
+</html>
