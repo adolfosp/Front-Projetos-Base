@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Snap</title>
+    <style>
+        .gallery{
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+        }
+
+        .gallery__item{
+            scroll-snap-align: center;
+            min-width: 75%;
+        }
+
+        .gallery__image{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="gallery__item">
+            <img src="./img1.jpg" class="gallery__image"/>
+            <img src="./img2.jpg" class="gallery__image"/>
+            <img src="./img3.jpg" class="gallery__image"/>
+            <img src="./img4.jpg" class="gallery__image"/>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

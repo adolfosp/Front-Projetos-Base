@@ -4,9 +4,9 @@ import { ProductCardComponent } from 'src/cases/auxiliaryRoutes/product-card/pro
 import { ShoppingCardComponent } from 'src/cases/auxiliaryRoutes/shopping-card/shopping-card.component';
 import { SkeletonLoaderComponent } from 'src/cases/skeleton/skeleton-loader/skeleton-loader.component';
 import { AppComponentCaseAsyncValidators } from 'src/cases/validatorsAsync/app.component';
-import { TrackByFnComponent } from '../cases/trackByFn/track-by-fn/track-by-fn.component';
 import { CaptchaComponent } from '../cases/captcha/captcha/captcha.component';
-import {InputChangeComponent} from "../cases/ngModelInputsChange/input-change.component";
+import { InputChangeComponent } from '../cases/ngModelInputsChange/input-change.component';
+import { TrackByFnComponent } from '../cases/trackByFn/track-by-fn/track-by-fn.component';
 
 const routes: Routes = [
   {
