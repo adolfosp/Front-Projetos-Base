@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { CaptchaComponent } from '../cases/captcha/captcha/captcha.component';
 import { InputChangeComponent } from '../cases/ngModelInputsChange/input-change.component';
 import { ListDraggableDirective } from './list-draggable.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ListDraggableDirective } from './list-draggable.directive';
     FormsModule,
     ReactiveFormsModule,
     AsyncPipe,
+    BrowserAnimationsModule,
   ],
   providers: [
     ReCaptchaV3Service,
