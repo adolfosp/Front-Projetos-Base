@@ -1,0 +1,44 @@
+<main>
+  <div class="container">    
+    <h1>Signals</h1>
+    <div class="row">
+      <div class="col-6">
+        <form (submit)="cadastrar($event)">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome do jogo: </label>
+            <input required type="text" class="form-control" id="nome" [formControl]="nome">
+          </div>
+          <div class="mb-3">
+            <label for="anoLancamento" class="form-label">Ano de lançamento: </label>
+            <input required type="number" class="form-control" id="anoLancamento" [formControl]="anoLancamento">
+          </div>
+          <div class="mb-3">
+            <label for="srcImagem" class="form-label">Imagem de capa: </label>
+            <input required type="text" class="form-control" id="srcImagem" [formControl]="srcImagem">
+          </div>
+          <button type="submit" class="btn btn-dark">
+            Salvar
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center gap-2 mt-2">
+      <div class="col-12">
+        <p class="alert alert-primary" role="alert">
+          Temos um total de {{ totalJogos() }} jogos cadastrados.
+        </p>
+      </div>
+      @for (jogo of jogosSig(); track jogo) {
+        <div class="col">
+          <div class="card">
+            <img [src]="jogo.srcImagem" class="card-img-top" [alt]="jogo.nome">
+            <div class="card-body">
+              <h5 class="card-title">{{ jogo.nome }}</h5>
+              <p class="card-text">Lançado em: {{ jogo.anoLancamento }}.</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
