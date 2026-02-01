@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>If-else no CSS (Exemplo)</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1d1830;
+      display: grid;
+      place-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      width: min(800px, 100%);
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .notice {
+      /* pega o valor do atributo data-status e joga em variável */
+      --noticeStatus: attr(data-status);
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding: 16px 20px;
+      border-radius: 6px;
+      color: white;
+
+      background: if(
+        style(--noticeStatus: "error"): #d81a19;
+        style(--noticeStatus: "warning"): #ffc500;
+        style(--noticeStatus: "success"): #4caf50;
+        else: #777;
+      );
+    }
+
+    .notice .icon {
+      font-size: 18px;
+    }
+
+    .notice p {
+      margin: 0;
+      flex: 1;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .notice .close {
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0.9;
+    }
+
+    .notice .close:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="notice" data-status="warning">
+      <span class="icon">🚩</span>
+
+      <p>
+        The system has an update regarding your request.
+        Please check the details.
+      </p>
+
+      <button class="close">✕</button>
+    </div>
+  </div>
+</body>
+</html>

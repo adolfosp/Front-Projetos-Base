@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Timeline CSS</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #2b1f4b, #0b1020 70%);
+      color: #fff;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(28px, 3.5vw, 54px);
+      margin-bottom: 60px;
+      color: #ff75b5;
+      text-shadow: 0 8px 25px rgba(255, 117, 181, 0.3);
+    }
+
+    /* Timeline container */
+    .timeline {
+      width: min(1050px, 100%);
+      margin: 0 auto;
+      position: relative;
+      padding: 30px 0;
+    }
+
+    /* Linha central */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(#ff2f7d, #ff75b5);
+      border-radius: 999px;
+      box-shadow: 0 0 20px rgba(255, 47, 125, 0.5);
+      opacity: 0.95;
+    }
+
+    /* Elemento */
+    .timeline-element {
+      display: flex;
+      width: 100%;
+      position: relative;
+      margin: 30px 0;
+      min-height: 90px;
+    }
+
+    /* Bolinha central */
+    .timeline-element::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 26px;
+      width: 14px;
+      height: 14px;
+      background: #ff2f7d;
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px rgba(255, 47, 125, 0.18);
+      z-index: 2;
+    }
+
+    /* Cards */
+    .timeline-card {
+      width: calc(50% - 45px);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+      opacity: 0;
+    }
+
+    /* Cabeçalho do ano */
+    .timeline-year {
+      background: linear-gradient(90deg, #ff2f7d, #ff75b5);
+      color: white;
+      font-weight: bold;
+      padding: 10px 14px;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline-content {
+      padding: 14px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    /* Setinha do card apontando pro centro */
+    .timeline-card::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+    }
+
+    /* Lado esquerdo */
+    .timeline-element:nth-child(odd) {
+      justify-content: flex-start;
+    }
+
+    .timeline-element:nth-child(odd) .timeline-card::after {
+      right: -10px;
+      border-left: 12px solid rgba(255, 255, 255, 0.16);
+    }
+
+    /* Lado direito */
+    .timeline-element:nth-child(even) {
+      justify-content: flex-end;
+    }
+
+    .timeline-element:nth-child(even) .timeline-card::after {
+      left: -10px;
+      border-right: 12px solid rgba(255, 255, 255, 0.16);
+    }
+
+    /* ===== Scroll animations (sem JS) ===== */
+    @keyframes slideInLeft {
+      0% {
+        transform: translateX(-110px);
+        opacity: 0;
+        filter: blur(4px);
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      0% {
+        transform: translateX(110px);
+        opacity: 0;
+        filter: blur(4px);
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    .timeline-element:nth-child(odd) .timeline-card {
+      animation: slideInLeft ease forwards;
+      animation-timeline: view();
+      animation-range: 100px 250px;
+    }
+
+    .timeline-element:nth-child(even) .timeline-card {
+      animation: slideInRight ease forwards;
+      animation-timeline: view();
+      animation-range: 100px 250px;
+    }
+
+    /* Responsivo */
+    @media (max-width: 860px) {
+      .timeline::before {
+        left: 12px;
+        transform: none;
+      }
+
+      .timeline-element {
+        justify-content: flex-start !important;
+        padding-left: 40px;
+      }
+
+      .timeline-element::before {
+        left: 12px;
+        transform: none;
+      }
+
+      .timeline-card {
+        width: 100%;
+      }
+
+      .timeline-card::after {
+        display: none;
+      }
+
+      .timeline-element:nth-child(odd) .timeline-card,
+      .timeline-element:nth-child(even) .timeline-card {
+        animation: slideInLeft ease forwards;
+        animation-timeline: view();
+        animation-range: 80px 220px;
+      }
+    }
+
+    /* Extra: espaçamento pra rolar mais */
+    .spacer {
+      height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Responsive Timeline in CSS</h1>
+
+  <section class="timeline">
+    <div class="timeline-element">
+      <div class="timeline-card">
+        <div class="timeline-year">2010</div>
+        <div class="timeline-content">
+          Instagram was launched, changing how people shared photos and giving birth to the influencer era.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-element">
+      <div class="timeline-card">
+        <div class="timeline-year">2011</div>
+        <div class="timeline-content">
+          The world was introduced to Siri on the iPhone 4S — suddenly, everyone was talking to their phones.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-element">
+      <div class="timeline-card">
+        <div class="timeline-year">2012</div>
+        <div class="timeline-content">
+          Scientists discovered the Higgs boson, nicknamed the “God particle”.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-element">
+      <div class="timeline-card">
+        <div class="timeline-year">2015</div>
+        <div class="timeline-content">
+          Streaming became mainstream and entertainment moved heavily to online platforms.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-element">
+      <div class="timeline-card">
+        <div class="timeline-year">2020</div>
+        <div class="timeline-content">
+          Remote work exploded globally and changed collaboration forever.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-element">
+      <div class="timeline-card">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-content">
+          Scroll-driven animations arrived in CSS, enabling awesome effects with zero JavaScript 🚀
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+</body>
+</html>
